@@ -8,14 +8,13 @@ import android.os.Bundle;
 import android.os.PersistableBundle;
 
 public class MainActivity extends Activity {
-    private static boolean openApp(final Context context, final String packageName) {
-        PackageManager manager = context.getPackageManager();
-        Intent i = manager.getLaunchIntentForPackage(packageName);
-        if (i == null)
-            return false;
-        i.addCategory(Intent.CATEGORY_LAUNCHER);
-        context.startActivity(i);
-        return true;
+    private static void openApp(final Context context, final String packageName) {
+        final PackageManager manager = context.getPackageManager();
+        final Intent intent = manager.getLaunchIntentForPackage(packageName);
+        if (intent != null) {
+            intent.addCategory(Intent.CATEGORY_LAUNCHER);
+            context.startActivity(intent);
+        }
     }
 
     public MainActivity() {}
